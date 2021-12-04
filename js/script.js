@@ -43,36 +43,40 @@
     optTitleListSelector = '.titles';
 
   function generateTitleLinks(){
-  /* remove contents of titleList */
-  const titlesOne = document.querySelector(optTitleListSelector);
-    console.log(titlesOne);
-  const titleList = (titlesOne).innerHTML = '';
-  /* for each article */
+  /* [DONE] remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+    titleList.innerHTML = '';
+  /* [DONE] for each article */
   const articles = document.querySelectorAll(optArticleSelector);
-    console.log(articles);
-  for(let article of articles){
-    console.log(article);
-  /* get the article id */
-  const articleId = article.getAttribute('id');
-    console.log(articleId);
-  /* find the title element */
-  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-    console.log(articleTitle);
-  /* get the title from the title element */
+    //console.log(articles);
+    let html = '';
+    for(let article of articles){
+      //console.log(article);
+      /* [DONE] get the article id */
+      const articleId = article.getAttribute('id');
+      //console.log(articleId);
+      /* [DONE] find the title element */
+      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+      //console.log(articleTitle);
+      /* [DONE] get the title from the title element */
 
-  /* create HTML of the link */
-  const linkHTML = '<li><a href="#' + articleId + '">' + articleTitle + '<span></span></a></li>';
-    console.log(linkHTML);
-  /* insert link into titleList */
-  }
+      /* [DONE] create HTML of the link */
+      const linkHTML = '<li><a href="#' + articleId + '">' + articleTitle + '<span></span></a></li>';
+      //console.log(linkHTML);
+      /* insert link into titleList */
+      html = html + linkHTML;
+
+    }
+      titleList.innerHTML = html;
+
 }
 
-generateTitleLinks();
+  generateTitleLinks();
 
 
 
-const links = document.querySelectorAll('.titles a');
+  const links = document.querySelectorAll('.titles a');
 
-for(let link of links){
+  for(let link of links){
   link.addEventListener('click', titleClickHandler);
-}
+  }
