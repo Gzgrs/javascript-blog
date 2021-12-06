@@ -61,22 +61,21 @@
       /* [DONE] get the title from the title element */
 
       /* [DONE] create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '">' + articleTitle + '<span></span></a></li>';
+      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
       //console.log(linkHTML);
       /* insert link into titleList */
       html = html + linkHTML;
-
+      console.log(html);
     }
-      titleList.innerHTML = html;
 
-}
+    titleList.innerHTML = html;
+
+    const links = document.querySelectorAll('.titles a');
+    console.log(links);
+    for(let link of links){
+    link.addEventListener('click', titleClickHandler);
+    }
+
+  }
 
   generateTitleLinks();
-
-
-
-  const links = document.querySelectorAll('.titles a');
-
-  for(let link of links){
-  link.addEventListener('click', titleClickHandler);
-  }
