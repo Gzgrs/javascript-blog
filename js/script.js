@@ -87,7 +87,7 @@ const optArticleSelector = '.post',
   const articles = document.querySelectorAll(optArticleSelector);
    //console.log(findArticles);
   /* START LOOP: for every article: */
-    for(let article of articles){
+  for(let article of articles){
 
     /* find tags wrapper */
     const tagWrapper = article.querySelector(optArticleTagsSelector);
@@ -97,23 +97,30 @@ const optArticleSelector = '.post',
     //console.log(html);
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-     console.log(articleTags);
+     //console.log(articleTags);
 
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
-     console.log(articleTagsArray);
-    }
+     //console.log(articleTagsArray);
+
     /* START LOOP: for each tag */
-
+    for(let tag of articleTagsArray){
       /* generate HTML of the link */
-
+      const htmlTagLink = '<li><a href="#' + articleTags + '"><span>' + articleTagsArray + '</span></a></li>';
+      //console.log(htmlTagLink);
       /* add generated code to html variable */
-
+      html = html + htmlTagLink;
+      //console.log(html);
     /* END LOOP: for each tag */
-
+    }
     /* insert HTML of all the links into the tags wrapper */
-
+    tagWrapper.innerHTML = html;
+    console.log(tagWrapper);
   /* END LOOP: for every article: */
+  }
 }
 
 generateTags();
+
+
+  
