@@ -154,12 +154,15 @@ generateTags();
   /* END LOOP: for each active tag link */
       }
   /* find all tag links with "href" attribute equal to the "href" constant */
-
+    const tagLinksHref = document.querySelectorAll('a[href="' + href + '"]')
+      console.log('tagLinksHref', tagLinksHref);
   /* START LOOP: for each found tag link */
-
+    for(let tagLinkHref of tagLinksHref){
     /* add class active */
-
+    tagLinkHref.classList.add('active');
+    console.log('tagLinkHref', tagLinkHref);
   /* END LOOP: for each found tag link */
+   }
 
   /* execute function "generateTitleLinks" with article selector as argument */
   }
