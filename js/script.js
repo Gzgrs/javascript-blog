@@ -49,7 +49,7 @@ const optArticleSelector = '.post',
     titleList.innerHTML = '';
   /* [DONE] for each article */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
-    //console.log(articles);
+    console.log(articles);
     let html = '';
     for(let article of articles){
       //console.log(article);
