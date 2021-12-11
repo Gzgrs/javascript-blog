@@ -41,7 +41,8 @@
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector ='.authors';
 
   function generateTitleLinks(customSelector = ''){
   /* [DONE] remove contents of titleList */
@@ -85,19 +86,19 @@ const optArticleSelector = '.post',
   function generateTags(){
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-   //console.log(findArticles);
+   //console.log(articles);
   /* [DONE]START LOOP: for every article: */
   for(let article of articles){
 
     /* [DONE]find tags wrapper */
     const tagWrapper = article.querySelector(optArticleTagsSelector);
-     //console.log(tagWrapper);
+     console.log(tagWrapper);
     /* [DONE]make html variable with empty string */
     let html = '';
     //console.log(html);
     /* [DONE]get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-     console.log('to to', articleTags);
+     //console.log('to to', articleTags);
 
     /* [DONE]split tags into array */
     const articleTagsArray = articleTags.split(' ');
@@ -183,7 +184,15 @@ generateTags();
   }
   addClickListenersToTags();
 
-
+/* przykladowa usunieta zawartosc z listy autorow
+<li><a href="#"><span class="author-name">Kitty Toebean</span></a></li>*/
   function generateAuthors(){
+    /* Find all authors */
+    const allAuthors = document.querySelectorAll(optArticleAuthorSelector);
+    console.log('allAuthors', allAuthors);
+    /* START loop: for every author */
+      for(let allAuthor of allAuthors){
+        const  =
+      }
 
   }
