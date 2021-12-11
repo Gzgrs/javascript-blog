@@ -143,14 +143,16 @@ generateTags();
     const tag = href.replace('#tag-','');
     console.log('replace', tag);
   /* find all tag links with class active */
-    const tagLinksActive = document.querySelectorAll('a.active[href^="#tag-"]')
-    console.log('tagLinksActive', tagLinks);
+    const activeLinks = document.querySelectorAll('a.active[href^="#tag-"]')
+    console.log('activeLinks', activeLinks);
   /* START LOOP: for each active tag link */
-
-    /* remove class active */
-
+      for(let activeLink of activeLinks){
+        console.log('loop', activeLink);
+  /* remove class active */
+       activeLink.classList.remove('active');
+       console.log('remove class active', activeLink);
   /* END LOOP: for each active tag link */
-
+      }
   /* find all tag links with "href" attribute equal to the "href" constant */
 
   /* START LOOP: for each found tag link */
