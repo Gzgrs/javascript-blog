@@ -97,17 +97,18 @@ const optArticleSelector = '.post',
     //console.log(html);
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-     //console.log(articleTags);
+     console.log('to to', articleTags);
 
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
-     //console.log(articleTagsArray);
+     console.log('split', articleTagsArray);
 
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray){
+      console.log('to', tag);
       /* generate HTML of the link */
-      const htmlTagLink = '<li><a href="#' + articleTags + '"><span>' + articleTagsArray + '</span></a></li>';
-      //console.log(htmlTagLink);
+      const htmlTagLink = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+      console.log('htmlTagLink', htmlTagLink);
       /* add generated code to html variable */
       html = html + htmlTagLink;
       //console.log(html);
@@ -115,7 +116,12 @@ const optArticleSelector = '.post',
     }
     /* insert HTML of all the links into the tags wrapper */
     tagWrapper.innerHTML = html;
-    console.log(tagWrapper);
+    console.log('html', html);
+    console.log('tagWrapper', tagWrapper);
+    const tags = document.querySelectorAll('.tags a');
+    for(let tag of tags){
+      tag.addEventListener('click', tagClickHandler);
+    }
   /* END LOOP: for every article: */
   }
 }
@@ -124,15 +130,21 @@ generateTags();
 
   function tagClickHandler(event){
   /* prevent default action for this event */
+    event.preventDefault();
 
   /* make new constant named "clickedElement" and give it the value of "this" */
-
+    const clickedElement = this;
+    //console.log('tag was clicked');
+    //console.log(event);
   /* make a new constant "href" and read the attribute "href" of the clicked element */
-
+    const href = clickedElement.getAttribute('href');
+    console.log('href', href);
   /* make a new constant "tag" and extract tag from the "href" constant */
-
+    const tag = href.replace('#tag-','');
+    console.log('replace', tag);
   /* find all tag links with class active */
-
+    const tagLinksActive = document.querySelectorAll('a.active[href^="#tag-"]')
+    console.log('tagLinksActive', tagLinks);
   /* START LOOP: for each active tag link */
 
     /* remove class active */
