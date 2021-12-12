@@ -42,7 +42,7 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector ='.authors';
+  optArticleAuthorSelector ='.post-author';
 
   function generateTitleLinks(customSelector = ''){
   /* [DONE] remove contents of titleList */
@@ -187,28 +187,30 @@ generateTags();
 /* przykladowa usunieta zawartosc z listy autorow
 <li><a href="#"><span class="author-name">Kitty Toebean</span></a></li>*/
   function generateAuthors(){
-    /* [NEW]Find all articles */
+    /* [DONE NEW]Find all articles */
     const allArticles = document.querySelectorAll(optArticleSelector);
     console.log('allArticles', allArticles);
-      /* [NEW]START loop: for every article */
+      /* [DONE NEW]START loop: for every article */
       for(let allArticle of allArticles){
-        /* [NEW]find tags wrapper */
+        /* [DONE NEW]find tags wrapper */
         const authorTagWrapper = allArticle.querySelector(optArticleAuthorSelector);
         console.log('authorTagWrapper', authorTagWrapper);
 
-        /* [NEW]get tags from data-author attribute */
-        const dataAuthorTagAtribute = allArticle.getAttribute('data-author');
-        console.log('dataAuthorTagAtribute', dataAuthorTagAtribute);
         /* make html variable with empty string */
         let html = '';
-        /* [New]generate html of the link */
+        /* [DONE NEW]get tags from data-author attribute */
+        const dataAuthorTagAtribute = allArticle.getAttribute('data-author');
+        console.log('dataAuthorTagAtribute', dataAuthorTagAtribute);
+
+        /* [DONE New]generate html of the link */
         const authorDataHtmlLinks = '<li><a href="#tag-' + dataAuthorTagAtribute + '"><span>' + dataAuthorTagAtribute + '</span></a></li>';
         console.log('authorDataHtmlLinks', authorDataHtmlLinks);
 
-        /* [NEW]add generated code to html variable */
+        /* [DONE NEW]add generated code to html variable */
         html = html + authorDataHtmlLinks;
         console.log('html', html);
-
+        /* [DONE NEW]insert HTML of all the links into the tags wrapper */
+        authorTagWrapper.innerHTML = html;
       }
 
   }
