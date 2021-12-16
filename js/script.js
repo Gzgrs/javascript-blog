@@ -42,7 +42,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector ='.post-author';
+  optArticleAuthorSelector ='.post-author',
+  optTagsListSelector = '.tags.list';
 
   function generateTitleLinks(customSelector = ''){
   console.log('customSelector', customSelector);
@@ -85,6 +86,8 @@ const optArticleSelector = '.post',
 
 
   function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  const allTags = [];
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
    //console.log(articles);
@@ -109,11 +112,13 @@ const optArticleSelector = '.post',
     for(let tag of articleTagsArray){
       console.log('to', tag);
       /* [DONE]generate HTML of the link */
-      const htmlTagLink = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+      const htmlTagLink = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
       console.log('htmlTagLink', htmlTagLink);
       /* [DONE]add generated code to html variable */
       html = html + htmlTagLink;
       //console.log(html);
+      /* [NEW] check if this link is NOT already in allTags */
+
     /* [DONE]END LOOP: for each tag */
     }
     /* [DONE]insert HTML of all the links into the tags wrapper */
