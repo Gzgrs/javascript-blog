@@ -80,6 +80,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
   .active {
     font-weight: bold;
   }
@@ -89,6 +90,29 @@ body {
   li {
     display: inline-block;
   }
+}
+
+.tags {
+  flex-wrap: wrap;
+  display: inline-flex;
+
+}
+
+.tag-size-1{
+  font-size: 100%;
+
+}
+
+.tag-size-2 {
+  font-size: 150%;
+}
+
+.tag-size-3 {
+  font-size: 180%;
+}
+
+.tag-size-5 {
+  font-size: 200%;
 }
 
 /* Authors */
@@ -110,6 +134,8 @@ body {
 
 .post-author {
   font-style: italic;
+  list-style-type: none;
+  text-decoration: none;
 }
 
 .post-tags {
