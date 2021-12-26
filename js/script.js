@@ -44,7 +44,9 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = '5',
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.authors';
+
 
 
 function generateTitleLinks(customSelector = ''){
@@ -234,9 +236,30 @@ function addClickListenersToTags(){
 }
 addClickListenersToTags();
 
+
+function calculateAuthorsParams(authors){
+  const authorParams = {max: 0, min: 999999};
+  for(let author in authors){
+    console.log(author + ' is used ' + authors[author] + ' times ');
+    authorParams.max = Math.max(authors[author], authorParams.max);
+    authorParams.min = Math.min(authors[author], authorParams.min);
+  }
+  return authorParams;
+}
+
+function calculateAuthorClass(authorCount, authorParams) {
+  const normalizedCount = authorCount - authorParams.min;
+  const normalizedMax = authorParams.max - authorParams.min;
+  const percentage =normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+
+}
 /* przykladowa usunieta zawartosc z listy autorow
 <li><a href="#"><span class="author-name">Kitty Toebean</span></a></li>*/
 function generateAuthors(){
+  /* [NEW] create a new variable allTags with an empty object */
+  let allAuthors = {};
   /* [DONE]Find all articles */
   const allArticles = document.querySelectorAll(optArticleSelector);
   console.log('allArticles', allArticles);
@@ -259,9 +282,33 @@ function generateAuthors(){
     /* [DONE NEW]add generated code to html variable */
     html = html + authorDataHtmlLinks;
     console.log('html', html);
+    /* [NEW] check if this link is NOT already in allAuthors */
+    if(!allAuthors[dataAuthorTagAtribute]) {
+      /* [NEW] add tag to allAuthors object */
+      allAuthors[dataAuthorTagAtribute] = 1;
+    } else {
+      allAuthors[dataAuthorTagAtribute]++;
+    }
     /* [DONE]insert HTML of all the links into the tags wrapper */
     authorTagWrapper.innerHTML = html;
   }
+  /* [NEW] find list of tags in right column */
+  const allAuthorsTags = document.querySelector(optAuthorsListSelector);
+  console.log('allAuthorsTags', allAuthorsTags);
+
+  const authorsParams = calculateAuthorsParams(allAuthors);
+  console.log('authorsParams:', authorsParams);
+  /* [NEW] create variable for all links HTML code */
+  let authorsAllLinksHTML = '';
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for(let author in allAuthors){
+  /* [NEW] generate code of a link and add it to authorsAllLinksHTML */
+    const tagLinkHtml = '<li><a class="' + calculateAuthorClass(allAuthors[author], authorsParams) +'"  href="#author-' + author + '">' + author +'</a></li> ';
+    console.log('tagLinkHtml', tagLinkHtml);
+    authorsAllLinksHTML += tagLinkHtml;
+  }
+  //*[NEW] add HTML from allAuthorsTags to tagList */
+  allAuthorsTags.innerHTML = authorsAllLinksHTML;
 
 }
 
